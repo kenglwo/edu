@@ -1,0 +1,45 @@
+<center>
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m l6 offset-m3 offset-l3">
+        <table class='gridtable'  border="1" cellspacing="1">
+          <tr><th align="center">学習者の文章構成に関する調査</th></tr>
+          <tr valign="top">
+            <td width="457" height="345" colspan="2">
+              <p><strong>目的</strong></p>
+              <p  style="line-height:1.5;">
+                本研究はみなさんの文章を構成する過程を調査するものであり、知識量を問うものではありません。実験開始前にこの説明をお読みいただき、ご協力いただける場合には同意にチェックを入れ、実験に進んでください。
+              </p><br>
+              
+              <p style="line-height:1.5;"><strong>実験方法 </strong></p>
+              <p style="line-height:1.5;">
+                <u>画面上に表示された指示に従い、質問に回答していただきます。</u><br>
+                所要時間は60～90分程度です。
+              </p><br>
+              <p style="line-height:1.5;"><strong>個人情報とデータの取扱い</strong></p>
+              <p style="line-height:1.5;">
+                取得したデータや個人情報は、研究目的以外には使用しません。データには番号付けを行うとともに匿名化しますので、専門学会、学術専門誌、学内研究会等を通じて研究発表する際も個人情報は守秘されます。データの保管には万全を期し外部へは漏洩しません。
+              </p><br><br>
+                
+              <p align="right" style="line-height:1.5;"><strong>実施責任者</strong></p>
+              <p align="right">神戸大学<br />川村晃市<br /></p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <br><br>
+  
+  <%= form_tag(controller: "login", action: "index") do %>
+    <%= check_box_tag("check") %>
+    <%= label_tag("check", "同意します。") %><br><br>
+    <%= submit_tag("実験開始") %>
+  <% end %>
+
+  <% if @msg.present? %>
+    <p style="color:red"><%= @msg %></p>
+  <% end %>
+    
+</center>

@@ -1,0 +1,57 @@
+<center>
+  <h3><%= @params %></h3>  
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>English</title>
+  <%= form_tag(controller:'englishes', action:'create') do %>
+    <%= hidden_field_tag('student_id', @student_id) %>    
+    <table class="gridtable">
+      <tbody>
+        <tr>
+          <td colspan="3">先に書いた日本語を英語に訳してください。<br><br>
+            以下の条件は必ず守ってください<br>
+            ・辞書（電子辞書・自動翻訳を含む）は<font color="#FF0000">絶対に</font>使用しないでください。<br>
+            ・文の最後は必ずピリオド「 . 」を書いてください。<br>
+            ・日本語が長くても、<font color="#FF0000">英語に訳す際に2文以上に分割しないでください。</font><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;例：昨日学校に行って、学食でお昼を食べ、図書館に本を返却した。<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;×Yesterday I went to school.  And I had a lunch.at cafeteria.  And I returned a book to the library.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;〇Yesterday I went to school and had a lunch at cafeteria, then returned a book to the library.<br>
+            ・わからない単語をとばして空白にしたり、日本語のままローマ字入力しないでください。<br>
+             &nbsp;&nbsp;&nbsp;&nbsp;例：副流煙　×Fukuryuen<br>
+            ・わからない単語は同様の意味の単語に言い換えてください。<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;例：熟考する  〇think deeply（considerでなくてもよい）<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;例：そのペンを貸してください。 〇そのペンを使ってもよいですか。（borrowでなくuseでもよい）<br>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="3">作文テーマ</th>
+        </tr>
+        <tr>
+          <td colspan="3" align="center">どんなスポーツが好きですか。それはなぜですか。<br>
+            What kind of sports do you like? Why?
+          </td>
+        </tr>
+        <tr>
+          <th></th>
+          <th>日本語文</th>
+          <th>英語訳文</th>
+        </tr>
+        <% @japanese_array.each_with_index do |japanese_sentence, i| %>
+          <% japanese_sentence_id = 'j_' + (i+1).to_s %>
+          <% english_sentence_id = 'e_' + (i+1).to_s %>          
+          <tr>
+            <td><%= i+1 %></td>
+            <td><%= japanese_sentence %></td>
+            <%= hidden_field_tag(japanese_sentence_id, japanese_sentence) %>
+            <td><%= text_field_tag(english_sentence_id) %></td>
+          </tr>
+
+        <% end %>
+        
+        <tr>
+          <tr><td align="center" colspan="3"><%= submit_tag("次へ") %></td></tr>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+</center>
+<%= javascript_include_tag 'englishes_form.js' %>

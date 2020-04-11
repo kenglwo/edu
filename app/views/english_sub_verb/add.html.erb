@@ -1,0 +1,33 @@
+<h3><%= @msg %></h3>
+<center>
+  <%= form_tag(controller:'english_sub_verb', action:'create') do %>  
+    <table class='gridtable'>
+    <tr>
+      <td colspan='6'>英語の主語とそれに対応する動詞を<font color='#FF0000'>抜き出して</font>、それぞれ<font color='#FF0000'>そのまま</font>記入してください。</td>
+    </tr>
+    <tr>
+      <th></th>
+      <th>英訳文</th>
+      <th id='sub'>主語</th>
+      <th>動詞</th>
+      <th>主語2</th>
+      <th>動詞2</th>
+    </tr>
+    <% @english_array.each_with_index do |english_sentence, i| %>
+      <% e_subject_id = 'j_subject_' + (i+1).to_s %>
+      <% e_verb_id = 'j_verb_' + (i+1).to_s %>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= english_sentence %></td>
+        <td><%= text_field_tag(e_subject_id) %></td>
+        <td><%= text_field_tag(e_verb_id) %></td>
+        <td><input type='text' name='jp_sub2[]' id='jp_sub2' value='なし' /></td>
+        <td><input type='text' name='jp_pre2[]' id='jp_pre2' value='なし' /></td>
+      </tr>
+    <% end %>    
+    <tr>
+      <tr><td align="center" colspan="2"><%= submit_tag("次へ") %></td></tr>      
+    </tr>
+  </table>
+<% end %>
+</center>

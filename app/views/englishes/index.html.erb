@@ -1,0 +1,16 @@
+<h1>Database of English</h1>
+<table border="1">
+  <tr>
+    <th>student_id</th><th>sentence_num</th><th>sentence</th><th>subject</th><th>verb</th><th>created_at</th>
+  </tr>
+  <% @data.each do |obj| %>
+    <tr>
+      <td><%= obj.student_id %></td>
+      <td><%= obj.sentence_num %></td>
+      <td><%= obj.sentence %></td>
+      <td><%= obj.subject %></td>
+      <td><%= obj.verb %></td>
+      <td><%= obj.created_at %></td>      
+    </tr>
+  <% end %>
+</table>

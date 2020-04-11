@@ -1,0 +1,36 @@
+<h3><%= @msg %></h3>
+<%= form_tag(controller:'japanese_sub_verb', action:'create') do %>
+ <%= hidden_field_tag('student_id', @student_id) %>    
+ <table class='gridtable'>
+    <tr>
+      <td colspan='6'>日本語の主語と述語を<font color='#FF0000'>抜き出して</font>、それぞれ<font color='#FF0000'>そのまま</font>記入してください。<br><br>
+主語と述語の組み合わせが２つ以上ある場合、重要なものから順に２つ記入してください。<br><br>
+以下の条件は必ず守ってください<br>
+・主語が省略されてない場合は<font color='#FF0000'>平仮名2文字で</font>、「なし」と記入してください。<br>
+・句読点（、および。）は記入しないでください。<br>
+      </td>
+    </tr>
+    <tr>
+      <th></th>
+      <th>日本語文</th>
+      <th id='sub'>主語</th>
+      <th>述語</th>
+      <th>主語2</th>
+      <th>述語2</th>
+    </tr>
+
+    <% @japanese_array.each_with_index do |japanese_sentence, i| %>
+      <% j_subject_id = 'j_subject_' + (i+1).to_s %>
+      <% j_verb_id = 'j_verb_' + (i+1).to_s %>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= japanese_sentence %></td>
+        <td><%= text_field_tag(j_subject_id) %></td>
+        <td><%= text_field_tag(j_verb_id) %></td>
+        <td><input type='text' name='jp_sub2[]' id='jp_sub2' value='なし' /></td>
+        <td><input type='text' name='jp_pre2[]' id='jp_pre2' value='なし' /></td>
+      </tr>
+    <% end %>
+    <tr><td align="center" colspan="2"><%= submit_tag("次へ") %></td></tr>
+  </table>
+<% end %>

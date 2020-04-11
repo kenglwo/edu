@@ -1,0 +1,38 @@
+<center>
+  <% if @student_info.errors.any? %>
+    <ul style="list-style: none">
+      <% @student_info.errors.messages.each do |key, values| %>
+        <% values.each do |value| %>
+        <li><span style="color: red"><%= value %></span></li>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
+ <table class='gridtable'>
+  <%= form_for(@student_info, url:{controller:'student_infos', action:'create'}) do |f| %>
+    <tr>
+      <th class="gridtable td" width="83">学籍番号:</th>
+      <td width="495"><%= f.text_field :student_id %></td>
+    </tr>
+    <tr>
+      <td>氏名:</td>
+      <td width="495"><%= f.text_field :student_name %></td>    
+    </tr>
+    <tr>
+      <td>英語習熟度:</td>
+      <td>
+        <strong style="margin-right: 20px;">TOEIC:</strong><%= f.text_field :score_toeic %>点<br>
+        <strong style="margin-right: 20px;">TOEFL:</strong><%= f.text_field :score_toefl %>点<br>
+        <strong style="margin-right: 27px;">英検:</strong><%= f.text_field :score_eiken %>級
+        <p><font color="#FF0000">＊受験経験がなければ空白のままでお願いします。</font></p>
+      </td>
+    </tr>
+    
+    <tr>
+      <%= f.hidden_field :theme, :value => 'anything' %>    
+      <td align="center" colspan="2"><%= f.submit "次へ" %></td>
+    </tr>
+  <% end %>
+ </table>
+</form>
+</center>

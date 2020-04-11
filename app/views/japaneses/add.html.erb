@@ -1,0 +1,33 @@
+<center>
+  <h3 style="color: red"><%= @msg %></h3>
+  <%= form_tag(controller: 'japaneses', action:'create') do %>    
+    <table width="529"  class='gridtable'>
+      <tr>
+        <td colspan="2">
+          <p>3つのテーマから1つ選び、日本語で<strong>簡潔に</strong>意見を述べてください。（30分程度）</p>
+          <p> 以下の条件は必ず守ってください</p>
+          <p><font color="#FF0000">・字数は300字以上400字未満。</font></p>
+          <p><font color="#FF0000">・1文の最後は必ず句動点「。」を書いてください。 </font></p>
+          <p><font color="#FF0000">・改行しないでください。</font></p>
+          <p><font color="#FF0000">・スペースキーを使用しないでください。</font></p>
+        </td>
+      </tr>
+      <tr>
+        <td width="75">作文テーマ</td>
+        <td width="442">
+          <%= radio_button_tag :theme, :sport, checked: true %>
+          <%= label_tag :theme_sport, "どんなスポーツが好きですか。それはなぜですか。" %><br>
+          <%= radio_button_tag :theme, :trip %>
+          <%= label_tag :theme_trip, "どこに旅行に行きたいですか。それはなぜですか。" %><br>
+          <%= radio_button_tag :theme, :job %>
+          <%= label_tag :theme_job, "大学生がアルバイトをすることに賛成ですか、反対ですか。" %><br>
+        </td>
+      </tr>
+      <tr><td colspan="2"><%= text_area_tag :japanese_sentences %></td></tr>
+      <tr><%= hidden_field_tag :student_id, @student_id %></tr>
+      <tr><td colspan="2" align="right" id="moji">0字</td></tr>
+      <tr><td align="center" colspan="2"><%= submit_tag "次へ" %></td></tr>
+    </table>
+  <% end %>
+</center>
+<%= javascript_include_tag 'form.js' %>
